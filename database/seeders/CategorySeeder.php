@@ -10,7 +10,7 @@ class CategorySeeder extends Seeder
 {
     public function run(): void
     {
-        collect(['Excavators', 'Wheel Loaders', 'Bulldozers', 'Cranes'])
+        collect(['Resort Landscape', 'Industrial Parks', 'Villas & Corporate Gardens'])
             ->each(fn ($name) => Category::create([
                 'name' => $name,
                 'slug' => Str::slug($name),

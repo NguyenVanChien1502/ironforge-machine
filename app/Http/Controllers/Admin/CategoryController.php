@@ -24,7 +24,7 @@ class CategoryController extends Controller
     {
         Category::create($request->validated());
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
+        return redirect()->route('admin.categories.index')->with('success', 'Đã tạo danh mục thành công.');
     }
 
     public function edit(Category $category)
@@ -36,17 +36,17 @@ class CategoryController extends Controller
     {
         $category->update($request->validated());
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+        return redirect()->route('admin.categories.index')->with('success', 'Đã cập nhật danh mục thành công.');
     }
 
     public function destroy(Category $category)
     {
         if ($category->products()->exists()) {
-            return back()->with('error', 'Cannot delete a category that still has products.');
+            return back()->with('error', 'Không thể xóa danh mục vẫn còn sản phẩm.');
         }
 
         $category->delete();
 
-        return back()->with('success', 'Category deleted successfully.');
+        return back()->with('success', 'Đã xóa danh mục thành công.');
     }
 }

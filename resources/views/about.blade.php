@@ -1,88 +1,127 @@
 <x-app-layout>
-    <x-slot:title>About Us — IronForge Machinery</x-slot:title>
-    <x-slot:description>Learn about the heritage, values, and engineering standards that make IronForge a trusted leader in heavy machinery.</x-slot:description>
+    <x-slot:title>Giới thiệu — Công Ty TNHH Hồ Nam</x-slot:title>
+    <x-slot:description>Câu chuyện hình thành, năng lực thi công và những dự án tiêu biểu của Công Ty TNHH Hồ Nam trong lĩnh vực cảnh quan xanh.</x-slot:description>
 
-    {{-- HERO SECTION --}}
     <section class="relative overflow-hidden bg-charcoal py-24 text-white">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?q=80&w=2000')] bg-cover bg-center opacity-20"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/80 to-charcoal/40"></div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000')] bg-cover bg-center opacity-15"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/85 to-charcoal/40"></div>
         <div class="relative mx-auto max-w-7xl px-6 text-center lg:px-8">
-            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-gold animate-fade-in">Our Heritage</p>
+            <p class="mb-3 text-xs font-semibold uppercase tracking-[0.3em] text-gold">Hồ Nam Landscape</p>
             <h1 class="text-4xl font-extrabold tracking-tight sm:text-6xl text-white">
-                Shaping the World's Infrastructure
+                Kiến tạo không gian xanh bền vững từ nền tảng kinh nghiệm lâu năm
             </h1>
             <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-300">
-                Since 2001, IronForge Machinery has engineered and distributed premium, heavy-duty industrial equipment built to conquer the most challenging terrains.
+                Từ tiền thân hình thành năm 1996 đến doanh nghiệp chính thức năm 2006, Hồ Nam theo đuổi các dự án cảnh quan có giá trị sử dụng lâu dài, giàu tính thẩm mỹ và phù hợp thực tế vận hành.
             </p>
         </div>
     </section>
 
-    {{-- VISION, MISSION & STORY --}}
     <section class="bg-white py-24">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="grid grid-cols-1 gap-16 lg:grid-cols-2 items-center">
-                <div class="space-y-6">
-                    <span class="text-xs font-semibold uppercase tracking-widest text-gold">Who We Are</span>
-                    <h2 class="text-3xl font-extrabold tracking-tight text-charcoal sm:text-4xl">
-                        Uncompromising Quality and Engineered Durability
-                    </h2>
-                    <p class="text-gray-600 leading-relaxed">
-                        What started as a small mechanical repair workshop in the early 2000s has evolved into a global powerhouse in the heavy machinery sector. Today, IronForge design offices and fabrication yards manufacture specialized crawler excavators, high-capacity wheel loaders, and site-ready cranes.
-                    </p>
-                    <p class="text-gray-600 leading-relaxed">
-                        We believe that heavy machinery must not only be powerful but intelligent. That is why our entire new fleet is integrated with advanced safety telemetry and low-emission hybrid systems to maximize productivity while respecting environmental parameters.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6 pt-4">
-                        <div class="border-l-4 border-gold pl-4">
-                            <h4 class="text-xl font-bold text-charcoal">Global Standards</h4>
-                            <p class="text-xs text-gray-500 mt-1">Full compliance with ISO 9001 quality audits.</p>
-                        </div>
-                        <div class="border-l-4 border-gold pl-4">
-                            <h4 class="text-xl font-bold text-charcoal">24/7 Support</h4>
-                            <p class="text-xs text-gray-500 mt-1">Responsive global parts delivery network.</p>
-                        </div>
+        <div class="mx-auto grid max-w-7xl grid-cols-1 gap-16 px-6 lg:grid-cols-2 lg:px-8">
+            <div>
+                <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-gold">Câu chuyện thương hiệu</p>
+                <h2 class="section-heading">Từ một cơ sở tiền thân đến doanh nghiệp cảnh quan chuyên sâu</h2>
+                <p class="mt-6 text-gray-600 leading-relaxed">
+                    Hồ Nam phát triển trên nền tảng kinh nghiệm thực địa tích lũy qua nhiều thế hệ thi công cây xanh, đặc biệt ở những khu vực có yêu cầu cao như resort ven biển, công viên công cộng và khu đô thị mới.
+                </p>
+                <p class="mt-4 text-gray-600 leading-relaxed">
+                    Chúng tôi tin rằng một công trình cảnh quan tốt không chỉ đẹp ở thời điểm bàn giao, mà phải duy trì được giá trị sử dụng, độ an toàn và sức sống của hệ cây trong suốt nhiều năm.
+                </p>
+
+                <div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div class="rounded-xl border border-gray-100 bg-gray-50 p-5">
+                        <h3 class="text-lg font-bold text-charcoal">1996</h3>
+                        <p class="mt-2 text-sm text-gray-500">Tiền thân của Hồ Nam bắt đầu hình thành từ các công trình cây xanh và chăm sóc cảnh quan quy mô nhỏ.</p>
+                    </div>
+                    <div class="rounded-xl border border-gray-100 bg-gray-50 p-5">
+                        <h3 class="text-lg font-bold text-charcoal">2006</h3>
+                        <p class="mt-2 text-sm text-gray-500">Doanh nghiệp chính thức hoạt động với định hướng thi công cảnh quan chuyên nghiệp.</p>
                     </div>
                 </div>
-                <div class="relative">
-                    <div class="absolute -inset-4 rounded-2xl bg-gradient-to-tr from-gold/10 to-gold/30 blur-lg"></div>
-                    <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?q=80&w=1200" alt="IronForge heavy fabrication yard" class="relative rounded-2xl shadow-premium object-cover w-full h-[450px]">
+            </div>
+
+            <div class="overflow-hidden rounded-2xl shadow-premium">
+                <img src="https://images.unsplash.com/photo-1497854536320-0fede7e7a2e4?q=80&w=1200" alt="Đội ngũ Hồ Nam thi công cảnh quan" class="h-full w-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-gray-50 py-24">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-gold">Ban điều hành</p>
+                <h2 class="section-heading">Giám đốc Nguyễn Chí Chúc</h2>
+                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">
+                    Người định hướng các tiêu chuẩn thi công, quản lý chất lượng và phát triển dịch vụ của Hồ Nam theo triết lý “bền vững, chỉn chu và đúng cam kết”.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-10 lg:grid-cols-[1.2fr_0.8fr] items-center">
+                <div class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-100">
+                    <h3 class="text-2xl font-heading text-charcoal">Hồ sơ năng lực</h3>
+                    <p class="mt-4 text-sm leading-relaxed text-gray-600">
+                        Ông Nguyễn Chí Chúc là người trực tiếp theo dõi nhiều dự án cảnh quan quy mô lớn tại Bà Rịa - Vũng Tàu và khu vực lân cận, với kinh nghiệm kết nối giữa yêu cầu thẩm mỹ, thi công hiện trường và khả năng bảo trì sau bàn giao.
+                    </p>
+                    <ul class="mt-6 space-y-3 text-sm text-gray-700">
+                        @foreach([
+                            'Điều phối khảo sát, thiết kế và thi công đồng bộ',
+                            'Kiểm soát tiến độ, chất lượng vật liệu và tỷ lệ sống của cây',
+                            'Tập trung vào giải pháp dễ vận hành và tối ưu chi phí bảo dưỡng',
+                        ] as $item)
+                            <li class="flex items-start gap-3">
+                                <span class="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-gold/20 text-[10px] font-bold text-gold">✓</span>
+                                <span>{{ $item }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
+                <div class="rounded-2xl bg-charcoal p-8 text-white shadow-premium">
+                    <p class="text-sm font-semibold uppercase tracking-widest text-gold">Năng lực triển khai</p>
+                    <div class="mt-6 grid grid-cols-2 gap-4">
+                        @foreach([
+                            ['value' => 'Resort', 'label' => 'Cảnh quan ven biển'],
+                            ['value' => 'Đô thị', 'label' => 'Công viên & quảng trường'],
+                            ['value' => 'KCN', 'label' => 'Dải cây xanh nội khu'],
+                            ['value' => 'Duy tu', 'label' => 'Chăm sóc dài hạn'],
+                        ] as $box)
+                            <div class="rounded-xl border border-white/10 bg-white/5 p-4">
+                                <p class="text-lg font-bold text-white">{{ $box['value'] }}</p>
+                                <p class="mt-1 text-xs text-gray-300">{{ $box['label'] }}</p>
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    {{-- OUR VALUES --}}
-    <section class="bg-gray-50 py-24">
+    <section class="bg-white py-24">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="text-center mb-16">
-                <span class="text-xs font-semibold uppercase tracking-widest text-gold">Core Values</span>
-                <h2 class="text-3xl font-extrabold tracking-tight text-charcoal sm:text-4xl mt-2">The Principles That Guide Us</h2>
-                <p class="text-gray-500 mt-4 max-w-xl mx-auto">Every weld, every transaction, and every customer service call is shaped by our three core pillars.</p>
+                <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-gold">Dự án tiêu biểu</p>
+                <h2 class="section-heading">Những công trình đã tạo dấu ấn</h2>
+                <p class="mt-4 text-gray-500 max-w-2xl mx-auto">
+                    Từ resort cao cấp đến công viên và công trình công cộng, mỗi dự án là một bài toán khác nhau về khí hậu, thẩm mỹ và vận hành.
+                </p>
             </div>
 
-            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                 @foreach([
-                    [
-                        'title' => 'Relentless Durability',
-                        'desc' => 'We engineer our machinery to withstand the harshest construction and mining conditions, ensuring constant uptime.',
-                        'icon' => '⚙️'
-                    ],
-                    [
-                        'title' => 'Customer-First Telemetry',
-                        'desc' => 'We do not just sell machines; we provide comprehensive cloud telemetry and training to keep operators safe and efficient.',
-                        'icon' => '🛡️'
-                    ],
-                    [
-                        'title' => 'Eco-Conscious Power',
-                        'desc' => 'We constantly iterate on hybrid drives and low-emissions exhaust designs to lead the industrial sector into a green future.',
-                        'icon' => '🌱'
-                    ]
-                ] as $value)
-                    <div class="card p-8 bg-white border border-gray-100 flex flex-col justify-between">
-                        <div>
-                            <div class="h-12 w-12 rounded-xl bg-gold/10 flex items-center justify-center text-2xl mb-6">{{ $value['icon'] }}</div>
-                            <h3 class="text-lg font-bold text-charcoal mb-3">{{ $value['title'] }}</h3>
-                            <p class="text-sm text-gray-500 leading-relaxed">{{ $value['desc'] }}</p>
+                    'Six Senses Côn Đảo',
+                    'Công viên Bãi Trước',
+                    'Ocenami Resort',
+                    'Bảo tàng Bà Rịa - Vũng Tàu',
+                    'KCN Đông Xuyên',
+                    'KDL Bến Thành - Long Hải',
+                ] as $project)
+                    <div class="card overflow-hidden bg-white">
+                        <div class="h-48 w-full bg-gradient-to-br from-charcoal via-charcoal-light to-gold/50"></div>
+                        <div class="p-6">
+                            <h3 class="text-lg font-bold text-charcoal">{{ $project }}</h3>
+                            <p class="mt-3 text-sm text-gray-500">
+                                Dự án tiêu biểu trong danh mục cảnh quan của Hồ Nam, tập trung vào hiệu quả sử dụng, tỷ lệ cây sống và trải nghiệm không gian lâu dài.
+                            </p>
                         </div>
                     </div>
                 @endforeach
@@ -90,28 +129,26 @@
         </div>
     </section>
 
-    {{-- LEADERSHIP / TEAM --}}
-    <section class="bg-white py-24">
+    <section class="bg-gray-50 py-24">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-xs font-semibold uppercase tracking-widest text-gold">Leadership Team</span>
-                <h2 class="text-3xl font-extrabold tracking-tight text-charcoal sm:text-4xl mt-2">Executive Officers</h2>
-                <p class="text-gray-500 mt-4 max-w-xl mx-auto">The industry veterans steering the course of IronForge Machinery globally.</p>
-            </div>
-
-            <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
                 @foreach([
-                    ['name' => 'Viktor Vance', 'role' => 'Founder & CEO', 'image' => 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=400'],
-                    ['name' => 'Sarah Sterling', 'role' => 'Chief Technology Officer', 'image' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400'],
-                    ['name' => 'Robert Miller', 'role' => 'VP of Engineering', 'image' => 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400'],
-                    ['name' => 'Amanda Cruz', 'role' => 'Head of Global Support', 'image' => 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400']
-                ] as $member)
-                    <div class="text-center">
-                        <div class="relative h-60 w-full overflow-hidden rounded-xl mb-4 bg-gray-100">
-                            <img src="{{ $member['image'] }}" alt="{{ $member['name'] }}" class="h-full w-full object-cover">
-                        </div>
-                        <h3 class="text-lg font-bold text-charcoal">{{ $member['name'] }}</h3>
-                        <p class="text-xs font-semibold text-gold uppercase tracking-wider mt-1">{{ $member['role'] }}</p>
+                    [
+                        'title' => 'Khảo sát kỹ lưỡng',
+                        'desc' => 'Bắt đầu từ điều kiện đất, gió, nắng, nguồn nước và mục tiêu vận hành của chủ đầu tư.',
+                    ],
+                    [
+                        'title' => 'Thi công đồng bộ',
+                        'desc' => 'Kết hợp cây xanh, thảm cỏ, hệ tưới và hạ tầng phụ trợ trong một quy trình thống nhất.',
+                    ],
+                    [
+                        'title' => 'Bảo dưỡng dài hạn',
+                        'desc' => 'Đội ngũ duy tu theo dõi sau bàn giao để giữ chất lượng cảnh quan ổn định theo thời gian.',
+                    ],
+                ] as $item)
+                    <div class="rounded-2xl bg-white p-8 shadow-sm ring-1 ring-gray-100">
+                        <h3 class="text-xl font-heading text-charcoal">{{ $item['title'] }}</h3>
+                        <p class="mt-4 text-sm leading-relaxed text-gray-600">{{ $item['desc'] }}</p>
                     </div>
                 @endforeach
             </div>

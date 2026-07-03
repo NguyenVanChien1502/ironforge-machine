@@ -19,11 +19,6 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        $allProducts = Product::with('category')
-            ->latest()
-            ->take(12)
-            ->get();
-
         $latestPosts = Post::published()
             ->latest('published_at')
             ->take(3)
@@ -34,7 +29,7 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        return view('home', compact('categories', 'featuredProducts', 'allProducts', 'latestPosts', 'testimonials'));
+        return view('home', compact('categories', 'featuredProducts', 'latestPosts', 'testimonials'));
     }
 
     public function about()

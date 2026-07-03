@@ -11,28 +11,28 @@ class TestimonialSeeder extends Seeder
     {
         $testimonials = [
             [
-                'customer_name' => 'Marcus Vance',
-                'company' => 'Apex Infrastructure Group',
+                'customer_name' => 'Nguyễn Quốc Huy',
+                'company' => 'BQL Khu nghỉ dưỡng Six Senses',
                 'rating' => 5,
-                'content' => 'The Prime XL 950 has been operating on our site for 6 months straight without a single hour of unplanned downtime. Outstanding build quality and responsive customer service.',
+                'content' => 'Đội ngũ Hồ Nam triển khai rất chỉn chu, từ khảo sát đến bàn giao đều đúng tiến độ. Mảng xanh sau thi công giữ form tốt và phù hợp với khí hậu biển.',
             ],
             [
-                'customer_name' => 'Elena Rostova',
-                'company' => 'Siberia Mining Corp',
+                'customer_name' => 'Lê Thị Kim Anh',
+                'company' => 'Ban Quản lý Công viên Bãi Trước',
                 'rating' => 5,
-                'content' => "IronForge's heavy-duty cranes completely changed the game for our site preparation. Their technical support engineers came directly to our remote site to ensure proper operator safety training.",
+                'content' => 'Khả năng phối hợp hiện trường rất tốt. Cảnh quan sau khi hoàn thiện tạo được không gian đi bộ thoáng, sạch và có chiều sâu thẩm mỹ.',
             ],
             [
-                'customer_name' => 'David Chen',
-                'company' => 'Metro Roadworks Ltd',
+                'customer_name' => 'Trần Minh Quân',
+                'company' => 'KCN Đông Xuyên',
                 'rating' => 4,
-                'content' => 'Excellent fuel efficiency on the WL 340 wheel loaders. It has saved us thousands in diesel costs over a short project lifecycle. Highly recommended for heavy commercial infrastructure.',
+                'content' => 'Hồ Nam tư vấn hợp lý cho mảng cây xanh ven trục đường nội khu. Cây sinh trưởng ổn định, ít công chăm sóc và hiệu quả che bóng rất tốt.',
             ],
             [
-                'customer_name' => 'Sarah Jenkins',
-                'company' => 'Jenkins Demolition Ltd',
+                'customer_name' => 'Phạm Hồng Nhung',
+                'company' => 'Ocenami Resort',
                 'rating' => 5,
-                'content' => "We have purchased earthmovers from three different global brands, but IronForge's BD 780 out-lifts and out-pushes them all. Their custom engineering solutions team was incredibly helpful during purchasing.",
+                'content' => 'Dịch vụ chăm sóc định kỳ rất chuyên nghiệp. Sau mỗi đợt bảo dưỡng, khuôn viên nhìn luôn tươi mới và đồng đều, đúng tiêu chuẩn resort cao cấp.',
             ],
         ];
 
@@ -40,7 +40,7 @@ class TestimonialSeeder extends Seeder
             Testimonial::create([
                 'customer_name' => $item['customer_name'],
                 'company' => $item['company'],
-                'avatar' => null, // seeded testimonials will use UI-Avatars automatically
+                'avatar' => null,
                 'rating' => $item['rating'],
                 'content' => $item['content'],
                 'is_visible' => true,

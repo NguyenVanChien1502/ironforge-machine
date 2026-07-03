@@ -1,4 +1,4 @@
-<x-admin-layout title="New Product">
+<x-admin-layout title="Thêm dự án">
     <div class="max-w-3xl rounded-xl bg-white p-8 shadow-sm ring-1 ring-gray-100">
         <form method="POST" action="{{ route('admin.products.store') }}" enctype="multipart/form-data" class="space-y-6"
               x-data="{ specs: [{ key: '', value: '' }] }">
@@ -6,23 +6,23 @@
 
             <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 <div>
-                    <label class="label">Title</label>
+                    <label class="label">Tên dự án</label>
                     <input type="text" name="title" required value="{{ old('title') }}" class="input">
                     @error('title') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                 </div>
                 <div>
-                    <label class="label">Slug</label>
+                    <label class="label">Đường dẫn</label>
                     <input type="text" name="slug" required value="{{ old('slug') }}" class="input">
                     @error('slug') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                 </div>
                 <div>
-                    <label class="label">Model Number</label>
+                    <label class="label">Mã dự án</label>
                     <input type="text" name="model_number" value="{{ old('model_number') }}" class="input">
                 </div>
                 <div>
-                    <label class="label">Category</label>
+                    <label class="label">Danh mục</label>
                     <select name="category_id" required class="input">
-                        <option value="">Select category</option>
+                        <option value="">Chọn danh mục</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
                         @endforeach
@@ -32,27 +32,26 @@
             </div>
 
             <div>
-                <label class="label">Product Image</label>
+                <label class="label">Ảnh dự án</label>
                 <input type="file" name="image" accept="image/*" class="input">
                 @error('image') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
             </div>
 
             <div>
-                <label class="label">Description</label>
+                <label class="label">Mô tả</label>
                 <textarea name="description" rows="5" class="input">{{ old('description') }}</textarea>
             </div>
 
-            {{-- SPECIFICATIONS REPEATER --}}
             <div>
                 <div class="mb-3 flex items-center justify-between">
-                    <label class="label !mb-0">Technical Specifications</label>
-                    <button type="button" @click="specs.push({ key: '', value: '' })" class="text-sm font-semibold text-gold hover:text-gold-dark">+ Add Spec</button>
+                    <label class="label !mb-0">Thông số kỹ thuật</label>
+                    <button type="button" @click="specs.push({ key: '', value: '' })" class="text-sm font-semibold text-gold hover:text-gold-dark">+ Thêm thông số</button>
                 </div>
                 <div class="space-y-3">
                     <template x-for="(spec, index) in specs" :key="index">
                         <div class="flex gap-3">
-                            <input type="text" :name="`specifications[${index}][key]`" x-model="spec.key" placeholder="e.g. Engine Power" class="input">
-                            <input type="text" :name="`specifications[${index}][value]`" x-model="spec.value" placeholder="e.g. 250 HP" class="input">
+                            <input type="text" :name="`specifications[${index}][key]`" x-model="spec.key" placeholder="Ví dụ: Công suất động cơ" class="input">
+                            <input type="text" :name="`specifications[${index}][value]`" x-model="spec.value" placeholder="Ví dụ: 250 HP" class="input">
                             <button type="button" @click="specs.splice(index, 1)" class="flex-none rounded-md px-3 text-red-500 hover:bg-red-50">✕</button>
                         </div>
                     </template>
@@ -61,12 +60,12 @@
 
             <label class="flex items-center gap-2 text-sm text-gray-700">
                 <input type="checkbox" name="is_featured" value="1" class="rounded border-gray-300 text-gold focus:ring-gold" @checked(old('is_featured'))>
-                Pin this product on the home page (Featured)
+                Ghim dự án này trên trang chủ
             </label>
 
             <div class="flex gap-3 pt-2">
-                <button type="submit" class="btn-secondary">Save Product</button>
-                <a href="{{ route('admin.products.index') }}" class="btn-outline !text-charcoal !border-gray-300">Cancel</a>
+                <button type="submit" class="btn-secondary">Lưu dự án</button>
+                <a href="{{ route('admin.products.index') }}" class="btn-outline !text-charcoal !border-gray-300">Hủy</a>
             </div>
         </form>
     </div>

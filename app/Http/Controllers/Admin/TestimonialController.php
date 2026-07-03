@@ -32,7 +32,7 @@ class TestimonialController extends Controller
 
         Testimonial::create($data);
 
-        return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial created successfully.');
+        return redirect()->route('admin.testimonials.index')->with('success', 'Đã tạo đánh giá thành công.');
     }
 
     public function edit(Testimonial $testimonial)
@@ -54,13 +54,13 @@ class TestimonialController extends Controller
 
         $testimonial->update($data);
 
-        return redirect()->route('admin.testimonials.index')->with('success', 'Testimonial updated successfully.');
+        return redirect()->route('admin.testimonials.index')->with('success', 'Đã cập nhật đánh giá thành công.');
     }
 
     public function destroy(Testimonial $testimonial)
     {
         $testimonial->delete();
 
-        return back()->with('success', 'Testimonial deleted successfully.');
+        return back()->with('success', 'Đã xóa đánh giá thành công.');
     }
 }

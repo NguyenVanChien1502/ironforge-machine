@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@800&family=Manrope:wght@800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,9 +12,19 @@ body {
     font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+}
+
+.font-stats {
+    font-family: 'Manrope', sans-serif;
+    font-weight: 800;
+}
+
 @layer components {
     .btn-primary {
-        @apply inline-flex items-center justify-center gap-2 rounded-md bg-gold px-6 py-3 text-sm font-semibold text-charcoal shadow-premium transition hover:bg-gold-dark hover:text-white;
+        @apply inline-flex items-center justify-center gap-2 rounded-md bg-gold px-6 py-3 text-sm font-semibold text-white shadow-premium transition hover:bg-gold/90 hover:text-white;
     }
 
     .btn-outline {
@@ -22,11 +32,11 @@ body {
     }
 
     .btn-secondary {
-        @apply inline-flex items-center justify-center gap-2 rounded-md bg-charcoal px-6 py-3 text-sm font-semibold text-white transition hover:bg-charcoal-light;
+        @apply inline-flex items-center justify-center gap-2 rounded-md bg-gold px-6 py-3 text-sm font-semibold text-white transition hover:bg-gold/90;
     }
 
     .section-heading {
-        @apply text-3xl font-extrabold tracking-tight text-charcoal sm:text-4xl;
+        @apply text-3xl font-extrabold tracking-tight text-charcoal sm:text-4xl font-heading;
     }
 
     .card {

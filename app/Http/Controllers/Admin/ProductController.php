@@ -39,7 +39,7 @@ class ProductController extends Controller
 
         Product::create($data);
 
-        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Đã tạo dự án thành công.');
     }
 
     public function edit(Product $product)
@@ -65,14 +65,14 @@ class ProductController extends Controller
 
         $product->update($data);
 
-        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('admin.products.index')->with('success', 'Đã cập nhật dự án thành công.');
     }
 
     public function destroy(Product $product)
     {
         $product->delete();
 
-        return back()->with('success', 'Product deleted successfully.');
+        return back()->with('success', 'Đã xóa dự án thành công.');
     }
 
     private function formatSpecifications(array $specifications): array
