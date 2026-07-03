@@ -11,7 +11,8 @@
         <nav class="hidden items-center gap-8 lg:flex">
             <a href="{{ route('home') }}" class="text-sm font-medium text-gray-200 transition hover:text-gold">Home</a>
             <a href="{{ route('products.index') }}" class="text-sm font-medium text-gray-200 transition hover:text-gold">Products</a>
-            <a href="{{ route('home') }}#about" class="text-sm font-medium text-gray-200 transition hover:text-gold">About</a>
+            <a href="{{ route('news.index') }}" class="text-sm font-medium text-gray-200 transition hover:text-gold">News</a>
+            <a href="{{ route('about') }}" class="text-sm font-medium text-gray-200 transition hover:text-gold">About</a>
             <a href="{{ route('home') }}#contact" class="text-sm font-medium text-gray-200 transition hover:text-gold">Contact</a>
         </nav>
 
@@ -31,7 +32,8 @@
         <div class="flex flex-col gap-4">
             <a href="{{ route('home') }}" class="text-sm font-medium text-gray-200 hover:text-gold">Home</a>
             <a href="{{ route('products.index') }}" class="text-sm font-medium text-gray-200 hover:text-gold">Products</a>
-            <a href="{{ route('home') }}#about" class="text-sm font-medium text-gray-200 hover:text-gold">About</a>
+            <a href="{{ route('news.index') }}" class="text-sm font-medium text-gray-200 hover:text-gold">News</a>
+            <a href="{{ route('about') }}" class="text-sm font-medium text-gray-200 hover:text-gold">About</a>
             <a href="{{ route('home') }}#contact" class="text-sm font-medium text-gray-200 hover:text-gold">Contact</a>
             <a href="{{ route('home') }}#contact" class="btn-primary w-full">Request a Quote</a>
         </div>

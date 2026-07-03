@@ -15,7 +15,8 @@
             <ul class="space-y-3 text-sm">
                 <li><a href="{{ route('home') }}" class="hover:text-gold">Home</a></li>
                 <li><a href="{{ route('products.index') }}" class="hover:text-gold">Products</a></li>
-                <li><a href="{{ route('home') }}#about" class="hover:text-gold">About Us</a></li>
+                <li><a href="{{ route('news.index') }}" class="hover:text-gold">News</a></li>
+                <li><a href="{{ route('about') }}" class="hover:text-gold">About Us</a></li>
                 <li><a href="{{ route('home') }}#contact" class="hover:text-gold">Contact</a></li>
             </ul>
         </div>

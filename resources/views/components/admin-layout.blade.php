@@ -23,6 +23,8 @@
                         ['route' => 'admin.dashboard', 'label' => 'Dashboard'],
                         ['route' => 'admin.categories.index', 'label' => 'Categories'],
                         ['route' => 'admin.products.index', 'label' => 'Products'],
+                        ['route' => 'admin.posts.index', 'label' => 'News & Articles'],
+                        ['route' => 'admin.testimonials.index', 'label' => 'Testimonials'],
                     ];
                 @endphp
                 @foreach($links as $link)

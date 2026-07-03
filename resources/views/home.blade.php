@@ -114,6 +114,88 @@
         </div>
     </section>
 
+    {{-- TESTIMONIALS --}}
+    <section class="bg-gray-50 py-24 border-y border-gray-100">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-gold">Testimonials</p>
+                <h2 class="section-heading">What Our Clients Say</h2>
+                <p class="mt-4 text-gray-500 max-w-lg mx-auto">Read reviews from construction and infrastructure leaders who trust IronForge Machinery.</p>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+                @forelse($testimonials as $testimonial)
+                    <div class="card p-8 bg-white border border-gray-100 flex flex-col justify-between">
+                        <div>
+                            {{-- Stars --}}
+                            <div class="flex gap-1 text-gold mb-4 text-lg">
+                                @for($i = 0; $i < 5; $i++)
+                                    @if($i < $testimonial->rating)
+                                        ★
+                                    @else
+                                        ☆
+                                    @endif
+                                @endfor
+                            </div>
+                            <p class="text-gray-600 italic text-sm leading-relaxed">
+                                "{{ $testimonial->content }}"
+                            </p>
+                        </div>
+                        <div class="mt-6 flex items-center gap-4 border-t border-gray-100 pt-4">
+                            <img src="{{ $testimonial->avatar_url }}" alt="{{ $testimonial->customer_name }}" class="h-10 w-10 rounded-full object-cover">
+                            <div>
+                                <h4 class="text-sm font-bold text-charcoal">{{ $testimonial->customer_name }}</h4>
+                                <p class="text-xs text-gray-400">{{ $testimonial->company }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <p class="col-span-full text-center text-gray-500">No reviews yet.</p>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
+    {{-- LATEST NEWS --}}
+    <section class="bg-white py-24">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+            <div class="mb-14 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end">
+                <div>
+                    <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-gold">Newsroom</p>
+                    <h2 class="section-heading">Latest Insights</h2>
+                </div>
+                <a href="{{ route('news.index') }}" class="text-sm font-semibold text-charcoal hover:text-gold">View all articles &rarr;</a>
+            </div>
+
+            <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                @forelse($latestPosts as $post)
+                    <div class="card overflow-hidden flex flex-col justify-between">
+                        <div>
+                            <div class="h-48 w-full overflow-hidden bg-gray-100">
+                                <img src="{{ $post->image ? Storage::disk('public')->url($post->image) : 'https://images.unsplash.com/photo-1581094288338-2314dddb7ecc?q=80&w=600' }}" 
+                                     alt="{{ $post->title }}" class="h-full w-full object-cover transition duration-500 hover:scale-105">
+                            </div>
+                            <div class="p-6">
+                                <p class="text-xs text-gray-400">{{ $post->published_at ? $post->published_at->format('M d, Y') : $post->created_at->format('M d, Y') }}</p>
+                                <h3 class="mt-2 text-lg font-bold text-charcoal leading-snug hover:text-gold transition">
+                                    <a href="{{ route('news.show', $post) }}">{{ $post->title }}</a>
+                                </h3>
+                                <p class="mt-3 text-xs text-gray-500 line-clamp-2">{{ $post->excerpt ?? Str::limit(strip_tags($post->body), 100) }}</p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <a href="{{ route('news.show', $post) }}" class="inline-flex items-center gap-1 text-xs font-semibold text-charcoal hover:text-gold">
+                                Read Article &rarr;
+                            </a>
+                        </div>
+                    </div>
+                @empty
+                    <p class="col-span-full text-center text-gray-500">No articles available.</p>
+                @endforelse
+            </div>
+        </div>
+    </section>
+
     {{-- CONTACT --}}
     <section id="contact" class="bg-charcoal py-24">
         <div class="mx-auto max-w-3xl px-6 lg:px-8">
