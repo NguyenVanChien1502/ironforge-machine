@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <title>Báo cáo xây dựng API - IronForge Machinery</title>
+  <style>
+    @page { size: A4; margin: 20mm 18mm 20mm 22mm; }
+    body { max-width: 820px; margin: 32px auto; font: 16px/1.55 Arial, sans-serif; color: #172033; }
+    h1 { color: #123a63; font-size: 26px; border-bottom: 2px solid #d5e2ef; padding-bottom: 7px; }
+    h2 { color: #185b8f; font-size: 20px; margin-top: 28px; }
+    h3 { color: #244a69; font-size: 17px; }
+    .cover { min-height: 900px; display: flex; flex-direction: column; justify-content: center; text-align: center; }
+    .cover h1 { border: 0; font-size: 34px; margin-bottom: 8px; }
+    .cover h2 { margin: 0 0 40px; font-size: 24px; }
+    .meta { width: 70%; margin: 30px auto; text-align: left; }
+    .callout { background: #eef6fc; border-left: 5px solid #2474aa; padding: 14px 18px; }
+    table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; }
+    th, td { border: 1px solid #b8c7d6; padding: 8px 10px; text-align: left; }
+    th { background: #e8f0f7; color: #123a63; }
+    code { background: #eef1f4; padding: 2px 5px; border-radius: 3px; }
+    pre { background: #101827; color: #e8eef5; padding: 15px; overflow-wrap: anywhere; white-space: pre-wrap; }
+    figure { margin: 25px 0; page-break-inside: avoid; }
+    figure img { width: 100%; border: 1px solid #a9b5c1; border-radius: 5px; }
+    figcaption { text-align: center; font-size: 14px; font-style: italic; color: #536170; margin-top: 7px; }
+    .page-break { page-break-before: always; }
+    @media print { body { margin: 0; max-width: none; } .cover { min-height: 245mm; } }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <h1>BÁO CÁO XÂY DỰNG API</h1>
+    <h2>Dự án IronForge Machinery</h2>
+    <p>Laravel 11 — RESTful API phiên bản v1</p>
+    <div class="meta">
+      <p><b>Sinh viên:</b> ................................................................</p>
+      <p><b>Mã số sinh viên:</b> .....................................................</p>
+      <p><b>Lớp:</b> .........................................................................</p>
+      <p><b>Giảng viên:</b> ...............................................................</p>
+    </div>
+    <p>Ngày lập báo cáo: 04/07/2026</p>
+  </section>
+
+  <h1>1. Mục tiêu và phạm vi</h1>
+  <p>Mục tiêu là xây dựng lớp API công khai cho website IronForge Machinery mà
+  không thay đổi đáng kể luồng web và trang quản trị hiện có. API phục vụ
+  frontend, ứng dụng di động hoặc hệ thống bên thứ ba.</p>
+  <ul>
+    <li>Giữ nguyên model, migration, controller web và giao diện Blade.</li>
+    <li>Tách API theo namespace <code>App\Http\Controllers\Api\V1</code>.</li>
+    <li>Chuẩn hóa JSON bằng Laravel API Resource.</li>
+    <li>Validation và giới hạn tần suất cho endpoint gửi yêu cầu.</li>
+    <li>Kiểm thử bằng SQLite in-memory, không tác động database thật.</li>
+  </ul>
+
+  <h1>2. Công nghệ và kiến trúc</h1>
+  <p>Dự án sử dụng PHP 8.2+, Laravel 11, Eloquent ORM và PHPUnit 11. API được
+  phiên bản hóa để có thể mở rộng mà không phá vỡ client đang sử dụng.</p>
+  <div class="callout"><b>Luồng xử lý:</b> HTTP Request → routes/api.php →
+  API Controller → Eloquent Model → API Resource → JSON Response.</div>
+
+  <h2>2.1. Thành phần bổ sung</h2>
+  <ul>
+    <li><code>routes/api.php</code>: khai báo 11 endpoint.</li>
+    <li><code>app/Http/Controllers/Api/V1</code>: truy vấn, lọc, phân trang.</li>
+    <li><code>app/Http/Resources/Api/V1</code>: định dạng JSON nhất quán.</li>
+    <li><code>bootstrap/app.php</code>: đăng ký API routes trong Laravel 11.</li>
+    <li><code>tests/Feature/Api/V1/ApiTest.php</code>: kiểm thử tích hợp.</li>
+  </ul>
+
+  <h1>3. Danh sách endpoint</h1>
+  <table>
+    <thead><tr><th>Method</th><th>Endpoint</th><th>Chức năng</th></tr></thead>
+    <tbody>
+      <tr><td>GET</td><td>/api/v1/home</td><td>Dữ liệu tổng hợp trang chủ</td></tr>
+      <tr><td>GET</td><td>/api/v1/settings</td><td>Cấu hình công khai</td></tr>
+      <tr><td>GET</td><td>/api/v1/categories</td><td>Danh sách danh mục</td></tr>
+      <tr><td>GET</td><td>/api/v1/categories/{slug}</td><td>Chi tiết danh mục</td></tr>
+      <tr><td>GET</td><td>/api/v1/products</td><td>Danh sách, tìm kiếm, lọc sản phẩm</td></tr>
+      <tr><td>GET</td><td>/api/v1/products/featured</td><td>Sản phẩm nổi bật</td></tr>
+      <tr><td>GET</td><td>/api/v1/products/{slug}</td><td>Chi tiết sản phẩm</td></tr>
+      <tr><td>GET</td><td>/api/v1/posts</td><td>Bài viết đã xuất bản</td></tr>
+      <tr><td>GET</td><td>/api/v1/posts/{slug}</td><td>Chi tiết bài viết</td></tr>
+      <tr><td>GET</td><td>/api/v1/testimonials</td><td>Đánh giá đang hiển thị</td></tr>
+      <tr><td>POST</td><td>/api/v1/inquiries</td><td>Gửi yêu cầu tư vấn</td></tr>
+    </tbody>
+  </table>
+
+  <h1>4. Chức năng chính</h1>
+  <h2>4.1. Truy vấn và phân trang</h2>
+  <p>Các danh sách dùng paginator. <code>per_page</code> được giới hạn 1–100.
+  Sản phẩm hỗ trợ <code>search</code>, <code>category</code>,
+  <code>featured</code>; bài viết hỗ trợ <code>search</code>.</p>
+  <h2>4.2. Route model binding</h2>
+  <p>Endpoint chi tiết dùng slug. Laravel tự tìm bản ghi và trả HTTP 404 khi
+  không tồn tại.</p>
+  <h2>4.3. Validation và an toàn dữ liệu</h2>
+  <p><code>POST /inquiries</code> tái sử dụng <code>StoreInquiryRequest</code>,
+  áp dụng throttle 30 request/phút và trả HTTP 201 khi tạo thành công.</p>
+  <h2>4.4. Kiểm soát nội dung công khai</h2>
+  <p>API chỉ trả bài đã xuất bản, đánh giá đang hiển thị và nhóm setting cần
+  cho giao diện.</p>
+
+  <div class="page-break"></div>
+  <h1>5. Bằng chứng triển khai và kiểm thử</h1>
+  <figure>
+    <img src="bang-chung-01-routes.png" alt="Danh sách API routes">
+    <figcaption>Hình 1. Kết quả thực tế của php artisan route:list --path=api.</figcaption>
+  </figure>
+  <figure>
+    <img src="bang-chung-02-tests.png" alt="Kết quả kiểm thử">
+    <figcaption>Hình 2. Toàn bộ 6 test và 36 assertion đều vượt qua.</figcaption>
+  </figure>
+
+  <div class="page-break"></div>
+  <h1>6. Bằng chứng phản hồi JSON</h1>
+  <p>Laravel được chạy cục bộ với database SQLite minh chứng riêng. Request
+  <code>GET /api/v1/products?per_page=1</code> trả cấu trúc
+  <code>data</code>, <code>links</code> và <code>meta</code>.</p>
+  <figure>
+    <img src="bang-chung-03-json.png" alt="Phản hồi JSON từ API">
+    <figcaption>Hình 3. Phản hồi JSON thực tế từ API đang chạy.</figcaption>
+  </figure>
+
+  <h1>7. Hướng dẫn kiểm thử lại</h1>
+  <pre>php artisan migrate --seed
+php artisan serve
+php artisan test --filter=ApiTest
+
+Invoke-RestMethod http://127.0.0.1:8000/api/v1/products</pre>
+  <p>Trong Postman, đặt base URL là
+  <code>http://127.0.0.1:8000/api/v1</code>. Với
+  <code>POST /inquiries</code>, gửi JSON gồm <code>name</code>,
+  <code>phone</code>, <code>email</code> và <code>message</code>.</p>
+
+  <h1>8. Kết luận</h1>
+  <p>API v1 được tích hợp theo hướng ít xâm lấn: không thay đổi schema dữ liệu,
+  không sửa luồng web/admin và tái sử dụng model cùng validation hiện có. Kết
+  quả kiểm thử xác nhận endpoint hoạt động đúng, dữ liệu công khai được kiểm
+  soát và phản hồi có cấu trúc JSON nhất quán.</p>
+</body>
+</html>
