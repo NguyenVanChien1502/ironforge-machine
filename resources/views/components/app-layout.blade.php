@@ -2,15 +2,28 @@
     $settings = \Illuminate\Support\Facades\Schema::hasTable('settings')
         ? \App\Models\Setting::pluck('value', 'key')->all()
         : [];
+    $siteName = $settings['site_name'] ?? 'Hồ Nam Landscape';
+    $currentLocale = app()->getLocale();
 @endphp
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="{{ $currentLocale }}" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $title ?? 'Công Ty TNHH Hồ Nam - Cảnh Quan & Thi Công Xanh' }}</title>
-    <meta name="description" content="{{ $description ?? 'Công Ty TNHH Hồ Nam chuyên thiết kế, thi công và chăm sóc cảnh quan cho resort, khu công nghiệp, công trình công cộng và biệt thự cao cấp.' }}">
+    <title>{{ $title ?? $siteName }}</title>
+    <meta name="description" content="{{ $description ?? $siteName }}">
+    <style>
+        .goog-te-banner-frame,
+        .goog-te-gadget,
+        .skiptranslate {
+            display: none !important;
+        }
+
+        body {
+            top: 0 !important;
+        }
+    </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-white text-charcoal antialiased">
@@ -26,7 +39,7 @@
         <div class="fixed right-4 top-1/2 z-50 -translate-y-1/2">
             <div class="flex flex-col items-center gap-3 rounded-[34px] border border-white/15 bg-gradient-to-b from-[#B36D2A] via-[#A85E22] to-[#8B451A] px-3 py-4 shadow-[0_18px_36px_rgba(0,0,0,0.24)] backdrop-blur-xl">
                 @if(($settings['show_floating_cart'] ?? '1') === '1' && ($settings['floating_cart'] ?? '1') === '1')
-                    <a href="#" class="group relative flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="Giỏ hàng" aria-label="Giỏ hàng">
+                    <a href="#" class="group relative flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.cart') }}" aria-label="{{ __('navigation.cart') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
@@ -45,7 +58,7 @@
                 @endif
 
                 @if(($settings['show_floating_phone'] ?? '1') === '1' && filled($settings['floating_phone'] ?? ''))
-                    <a href="tel:{{ str_replace(['.', ' '], '', $settings['floating_phone']) }}" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="Gọi hotline" aria-label="Gọi hotline">
+                    <a href="tel:{{ str_replace(['.', ' '], '', $settings['floating_phone']) }}" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.hotline') }}" aria-label="{{ __('navigation.hotline') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
@@ -53,7 +66,7 @@
                 @endif
 
                 @if(($settings['show_floating_chat'] ?? '1') === '1' && filled($settings['floating_chat'] ?? ''))
-                    <a href="{{ $settings['floating_chat'] }}" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="Tư vấn / Hỏi đáp" aria-label="Tư vấn / Hỏi đáp">
+                    <a href="{{ $settings['floating_chat'] }}" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.consulting') }}" aria-label="{{ __('navigation.consulting') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -67,6 +80,36 @@
                 @endif
             </div>
         </div>
+    @endif
+
+    @if($currentLocale === 'en')
+        <div id="google_translate_element" class="hidden"></div>
+        <script>
+            document.cookie = 'googtrans=/vi/en;path=/';
+            document.cookie = 'googtrans=/vi/en;domain=' + window.location.hostname + ';path=/';
+
+            window.googleTranslateElementInit = function () {
+                new google.translate.TranslateElement({
+                    pageLanguage: 'vi',
+                    includedLanguages: 'vi,en',
+                    autoDisplay: false
+                }, 'google_translate_element');
+
+                window.setTimeout(function () {
+                    var combo = document.querySelector('.goog-te-combo');
+                    if (combo) {
+                        combo.value = 'en';
+                        combo.dispatchEvent(new Event('change'));
+                    }
+                }, 500);
+            };
+        </script>
+        <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    @else
+        <script>
+            document.cookie = 'googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+            document.cookie = 'googtrans=;expires=Thu, 01 Jan 1970 00:00:00 GMT;domain=' + window.location.hostname + ';path=/';
+        </script>
     @endif
 </body>
 </html>

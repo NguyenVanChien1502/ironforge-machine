@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 abstract class ApiController extends Controller
 {
@@ -12,6 +13,9 @@ abstract class ApiController extends Controller
     {
         if (! Schema::hasTable('settings')) {
             return [
+                'site_name' => 'Hồ Nam Landscape',
+                'site_logo' => null,
+                'site_logo_url' => null,
                 'floating_phone' => null,
                 'floating_zalo' => null,
                 'floating_facebook' => null,
@@ -30,6 +34,11 @@ abstract class ApiController extends Controller
         $settings = Setting::pluck('value', 'key')->all();
 
         return [
+            'site_name' => $settings['site_name'] ?? 'Hồ Nam Landscape',
+            'site_logo' => $settings['site_logo'] ?? null,
+            'site_logo_url' => filled($settings['site_logo'] ?? null)
+                ? Storage::disk('public')->url($settings['site_logo'])
+                : null,
             'floating_phone' => $settings['floating_phone'] ?? null,
             'floating_zalo' => $settings['floating_zalo'] ?? null,
             'floating_facebook' => $settings['floating_facebook'] ?? null,

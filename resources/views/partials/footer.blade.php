@@ -1,12 +1,18 @@
 @php
     $settings = $settings ?? [];
+    $siteName = $settings['site_name'] ?? 'Hồ Nam Landscape';
+    $siteLogo = $settings['site_logo'] ?? null;
 @endphp
 <footer class="bg-charcoal text-gray-300">
     <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 py-16 sm:grid-cols-2 lg:grid-cols-4 lg:px-8">
         <div>
             <div class="mb-4 flex items-center gap-3">
-                <span class="flex h-9 w-9 items-center justify-center rounded-md bg-gold font-black text-charcoal">HN</span>
-                <span class="text-lg font-bold text-white">Hồ Nam<span class="text-gold"> Landscape</span></span>
+                @if($siteLogo)
+                    <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($siteLogo) }}" alt="{{ $siteName }}" class="h-10 w-10 rounded-md object-contain">
+                @else
+                    <span class="flex h-9 w-9 items-center justify-center rounded-md bg-gold font-black text-charcoal">HN</span>
+                @endif
+                <span class="text-lg font-bold text-white">{{ $siteName }}</span>
             </div>
             <p class="text-sm leading-relaxed text-gray-400">
                 Thi công, chăm sóc và phát triển cảnh quan cho resort, khu công nghiệp, công viên và công trình công cộng theo tiêu chuẩn bền vững.
@@ -16,11 +22,11 @@
         <div>
             <h4 class="mb-4 text-sm font-semibold uppercase tracking-wider text-white">Liên kết nhanh</h4>
             <ul class="space-y-3 text-sm">
-                <li><a href="{{ route('home') }}" class="hover:text-gold">Trang chủ</a></li>
-                <li><a href="{{ route('products.index') }}" class="hover:text-gold">Dự án</a></li>
-                <li><a href="{{ route('news.index') }}" class="hover:text-gold">Tin tức</a></li>
-                <li><a href="{{ route('about') }}" class="hover:text-gold">Giới thiệu</a></li>
-                <li><a href="{{ route('home') }}#contact" class="hover:text-gold">Liên hệ</a></li>
+                <li><a href="{{ route('home') }}" class="hover:text-gold">{{ __('navigation.home') }}</a></li>
+                <li><a href="{{ route('products.index') }}" class="hover:text-gold">{{ __('navigation.products') }}</a></li>
+                <li><a href="{{ route('news.index') }}" class="hover:text-gold">{{ __('navigation.news') }}</a></li>
+                <li><a href="{{ route('about') }}" class="hover:text-gold">{{ __('navigation.about') }}</a></li>
+                <li><a href="{{ route('home') }}#contact" class="hover:text-gold">{{ __('navigation.contact') }}</a></li>
             </ul>
         </div>
 
@@ -56,6 +62,6 @@
     </div>
 
     <div class="border-t border-white/10 py-6 text-center text-xs text-gray-500">
-        &copy; {{ date('Y') }} Công Ty TNHH Hồ Nam. All rights reserved.
+        &copy; {{ date('Y') }} {{ $siteName }}. All rights reserved.
     </div>
 </footer>

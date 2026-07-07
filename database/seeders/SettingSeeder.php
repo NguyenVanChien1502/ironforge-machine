@@ -10,6 +10,8 @@ class SettingSeeder extends Seeder
     public function run(): void
     {
         $settings = [
+            'site_name' => 'Hồ Nam Landscape',
+            'site_logo' => null,
             'floating_phone' => '064.358.6494',
             'floating_zalo' => 'https://zalo.me/0643586494',
             'floating_facebook' => 'https://facebook.com/cayxanhhonam',

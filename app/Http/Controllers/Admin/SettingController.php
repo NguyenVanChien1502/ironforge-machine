@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
@@ -27,6 +28,8 @@ class SettingController extends Controller
         }
 
         $validated = $request->validate([
+            'site_name' => ['required', 'string', 'max:255'],
+            'site_logo' => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],
             'floating_phone' => ['nullable', 'string', 'max:50'],
             'floating_zalo' => ['nullable', 'string', 'max:255'],
             'floating_facebook' => ['nullable', 'string', 'max:255'],
@@ -40,7 +43,21 @@ class SettingController extends Controller
             'show_floating_bar' => ['nullable'],
         ]);
 
+        $currentSettings = Setting::pluck('value', 'key')->all();
+
+        $siteLogo = $currentSettings['site_logo'] ?? null;
+
+        if ($request->hasFile('site_logo')) {
+            if ($siteLogo) {
+                Storage::disk('public')->delete($siteLogo);
+            }
+
+            $siteLogo = $request->file('site_logo')->store('brand', 'public');
+        }
+
         $payload = [
+            'site_name' => $validated['site_name'],
+            'site_logo' => $siteLogo,
             'floating_phone' => $validated['floating_phone'] ?? null,
             'floating_zalo' => $validated['floating_zalo'] ?? null,
             'floating_facebook' => $validated['floating_facebook'] ?? null,
