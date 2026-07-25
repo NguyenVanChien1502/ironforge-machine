@@ -128,7 +128,6 @@ class SettingController extends Controller
             'show_floating_phone' => $request->boolean('show_floating_phone') ? '1' : '0',
             'show_floating_chat' => $request->boolean('show_floating_chat') ? '1' : '0',
             'show_floating_facebook' => $request->boolean('show_floating_facebook') ? '1' : '0',
-            'floating_cart' => $request->boolean('floating_cart') ? '1' : '0',
             'show_floating_bar' => $request->boolean('show_floating_bar') ? '1' : '0',
         ];
 

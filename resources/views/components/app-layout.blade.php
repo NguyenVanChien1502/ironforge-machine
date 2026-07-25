@@ -38,7 +38,7 @@
     @if(($settings['show_floating_bar'] ?? '1') === '1')
         <div class="fixed right-4 top-1/2 z-50 -translate-y-1/2">
             <div class="flex flex-col items-center gap-3 rounded-[34px] border border-white/15 bg-gradient-to-b from-[#B36D2A] via-[#A85E22] to-[#8B451A] px-3 py-4 shadow-[0_18px_36px_rgba(0,0,0,0.24)] backdrop-blur-xl">
-                @if(($settings['show_floating_cart'] ?? '1') === '1' && ($settings['floating_cart'] ?? '1') === '1')
+                @if(($settings['show_floating_cart'] ?? '1') === '1')
                     <a href="#" class="group relative flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.cart') }}" aria-label="{{ __('navigation.cart') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />

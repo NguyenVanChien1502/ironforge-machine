@@ -47,7 +47,7 @@ class Product extends Model
     {
         return $this->image
             ? Storage::disk('public')->url($this->image)
-            : asset('images/placeholder-product.jpg');
+            : asset('images/placeholder-product.svg');
     }
 
     protected static function booted(): void

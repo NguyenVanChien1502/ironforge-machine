@@ -211,7 +211,7 @@
                 </label>
 
                 <label class="flex items-start gap-3 rounded-xl border border-gray-200 p-4">
-                    <input type="checkbox" name="floating_cart" value="1" class="mt-1 rounded border-gray-300 text-gold focus:ring-gold" @checked(($settings['floating_cart'] ?? '0') === '1')>
+                    <input type="checkbox" name="show_floating_cart" value="1" class="mt-1 rounded border-gray-300 text-gold focus:ring-gold" @checked(($settings['show_floating_cart'] ?? '0') === '1')>
                     <span>
                         <span class="block font-semibold text-charcoal">Hiển thị nút giỏ hàng</span>
                         <span class="block text-sm text-gray-500">Hiển thị icon giỏ hàng kèm badge số lượng.</span>
