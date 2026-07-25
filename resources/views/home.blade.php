@@ -32,10 +32,10 @@
     <section class="border-b border-gray-100 bg-white">
         <div class="mx-auto grid max-w-7xl grid-cols-2 gap-8 px-6 py-16 sm:grid-cols-4 lg:px-8">
             @foreach([
-                ['value' => '19+', 'label' => 'Năm phát triển'],
-                ['value' => '300+', 'label' => 'Hạng mục bàn giao'],
-                ['value' => '3', 'label' => 'Miền phục vụ'],
-                ['value' => '50+', 'label' => 'Đối tác & chủ đầu tư'],
+                ['value' => $settings['stat_1_value'] ?? '19+', 'label' => $settings['stat_1_label'] ?? 'Năm phát triển'],
+                ['value' => $settings['stat_2_value'] ?? '300+', 'label' => $settings['stat_2_label'] ?? 'Hạng mục bàn giao'],
+                ['value' => $settings['stat_3_value'] ?? '3', 'label' => $settings['stat_3_label'] ?? 'Miền phục vụ'],
+                ['value' => $settings['stat_4_value'] ?? '50+', 'label' => $settings['stat_4_label'] ?? 'Đối tác & chủ đầu tư'],
             ] as $stat)
                 <div class="text-center">
                     <p class="font-stats text-4xl text-charcoal sm:text-5xl">{{ $stat['value'] }}</p>
@@ -99,20 +99,20 @@
     <section class="bg-white py-24">
         <div class="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 px-6 lg:grid-cols-2 lg:px-8">
             <div>
-                <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-gold">Về Hồ Nam</p>
-                <h2 class="section-heading">Từ nền tảng 1996 đến doanh nghiệp chính thức năm 2006</h2>
+                <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-gold">{{ $settings['about_eyebrow'] ?? 'Về Hồ Nam' }}</p>
+                <h2 class="section-heading">{{ $settings['about_title'] ?? 'Từ nền tảng 1996 đến doanh nghiệp chính thức năm 2006' }}</h2>
                 <p class="mt-6 text-gray-600">
-                    Hồ Nam phát triển từ một tiền thân hình thành năm 1996, đến năm 2006 chính thức trở thành doanh nghiệp hoạt động chuyên sâu trong lĩnh vực cảnh quan, thi công cây xanh và duy tu bảo dưỡng.
+                    {{ $settings['about_description_1'] ?? 'Hồ Nam phát triển từ một tiền thân hình thành năm 1996, đến năm 2006 chính thức trở thành doanh nghiệp hoạt động chuyên sâu trong lĩnh vực cảnh quan, thi công cây xanh và duy tu bảo dưỡng.' }}
                 </p>
-                <p class="mt-4 text-gray-600">
-                    Chúng tôi tập trung vào các dự án resort, công viên ven biển, khu đô thị, khu công nghiệp và công trình công cộng, với tinh thần bền vững, linh hoạt và đúng tiến độ.
-                </p>
+                @if(filled($settings['about_description_2'] ?? null))
+                    <p class="mt-4 text-gray-600">{{ $settings['about_description_2'] }}</p>
+                @endif
                 <ul class="mt-8 space-y-4">
-                    @foreach([
-                        'Khảo sát hiện trạng và lập giải pháp cảnh quan theo từng dự án',
-                        'Thi công cây xanh, hệ tưới và cảnh quan mềm đồng bộ',
-                        'Chăm sóc, bảo dưỡng dài hạn sau bàn giao'
-                    ] as $point)
+                    @foreach(array_filter([
+                        $settings['about_point_1'] ?? 'Khảo sát hiện trạng và lập giải pháp cảnh quan theo từng dự án',
+                        $settings['about_point_2'] ?? 'Thi công cây xanh, hệ tưới và cảnh quan mềm đồng bộ',
+                        $settings['about_point_3'] ?? 'Chăm sóc, bảo dưỡng dài hạn sau bàn giao',
+                    ]) as $point)
                         <li class="flex items-center gap-3 text-gray-700">
                             <span class="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-gold/20 text-gold">✓</span>
                             {{ $point }}
@@ -121,7 +121,7 @@
                 </ul>
             </div>
             <div class="overflow-hidden rounded-2xl shadow-premium">
-                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200" alt="Cảnh quan xanh Hồ Nam" class="h-full w-full object-cover">
+                <img src="{{ filled($settings['about_image'] ?? null) ? Storage::disk('public')->url($settings['about_image']) : 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200' }}" alt="{{ $settings['about_title'] ?? 'Cảnh quan xanh Hồ Nam' }}" class="h-full w-full object-cover">
             </div>
         </div>
     </section>

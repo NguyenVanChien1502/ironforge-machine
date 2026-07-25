@@ -24,7 +24,7 @@
                         ['route' => 'admin.products.index', 'label' => 'Dự án'],
                         ['route' => 'admin.posts.index', 'label' => 'Tin tức'],
                         ['route' => 'admin.testimonials.index', 'label' => 'Đánh giá'],
-                    ['route' => 'admin.settings.edit', 'label' => 'Cài đặt thanh nổi'],
+                    ['route' => 'admin.settings.edit', 'label' => 'Cài đặt website'],
                     ];
                 @endphp
                 @foreach($links as $link)

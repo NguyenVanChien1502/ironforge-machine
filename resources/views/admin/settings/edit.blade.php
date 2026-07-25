@@ -41,6 +41,88 @@
 
             <section class="space-y-5 border-t border-gray-100 pt-8">
                 <div>
+                    <h3 class="text-base font-bold text-charcoal">Thông số nổi bật</h3>
+                    <p class="mt-1 text-sm text-gray-500">Chỉnh sửa bốn thông số hiển thị ngay dưới banner trang chủ.</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    @foreach([
+                        1 => ['19+', 'Năm phát triển'],
+                        2 => ['300+', 'Hạng mục bàn giao'],
+                        3 => ['3', 'Miền phục vụ'],
+                        4 => ['50+', 'Đối tác & chủ đầu tư'],
+                    ] as $number => [$defaultValue, $defaultLabel])
+                        <div class="rounded-xl border border-gray-200 p-4">
+                            <p class="mb-3 text-sm font-semibold text-charcoal">Thông số {{ $number }}</p>
+                            <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+                                <div>
+                                    <label class="label">Giá trị</label>
+                                    <input type="text" name="stat_{{ $number }}_value" value="{{ old('stat_'.$number.'_value', $settings['stat_'.$number.'_value'] ?? $defaultValue) }}" class="input" required>
+                                    @error('stat_'.$number.'_value') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label class="label">Nhãn</label>
+                                    <input type="text" name="stat_{{ $number }}_label" value="{{ old('stat_'.$number.'_label', $settings['stat_'.$number.'_label'] ?? $defaultLabel) }}" class="input" required>
+                                    @error('stat_'.$number.'_label') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+
+            <section class="space-y-5 border-t border-gray-100 pt-8">
+                <div>
+                    <h3 class="text-base font-bold text-charcoal">Phần giới thiệu trên trang chủ</h3>
+                    <p class="mt-1 text-sm text-gray-500">Cập nhật nhãn, tiêu đề, nội dung, các ý nổi bật và hình ảnh giới thiệu.</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    <div>
+                        <label class="label">Nhãn phía trên</label>
+                        <input type="text" name="about_eyebrow" value="{{ old('about_eyebrow', $settings['about_eyebrow'] ?? 'Về Hồ Nam') }}" class="input" required>
+                        @error('about_eyebrow') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                    </div>
+                    <div>
+                        <label class="label">Tiêu đề</label>
+                        <input type="text" name="about_title" value="{{ old('about_title', $settings['about_title'] ?? 'Từ nền tảng 1996 đến doanh nghiệp chính thức năm 2006') }}" class="input" required>
+                        @error('about_title') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="label">Đoạn mô tả thứ nhất</label>
+                        <textarea name="about_description_1" rows="3" class="input" required>{{ old('about_description_1', $settings['about_description_1'] ?? 'Hồ Nam phát triển từ một tiền thân hình thành năm 1996, đến năm 2006 chính thức trở thành doanh nghiệp hoạt động chuyên sâu trong lĩnh vực cảnh quan, thi công cây xanh và duy tu bảo dưỡng.') }}</textarea>
+                        @error('about_description_1') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="label">Đoạn mô tả thứ hai</label>
+                        <textarea name="about_description_2" rows="3" class="input">{{ old('about_description_2', $settings['about_description_2'] ?? 'Chúng tôi tập trung vào các dự án resort, công viên ven biển, khu đô thị, khu công nghiệp và công trình công cộng, với tinh thần bền vững, linh hoạt và đúng tiến độ.') }}</textarea>
+                        @error('about_description_2') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                    </div>
+                    @foreach([
+                        1 => 'Khảo sát hiện trạng và lập giải pháp cảnh quan theo từng dự án',
+                        2 => 'Thi công cây xanh, hệ tưới và cảnh quan mềm đồng bộ',
+                        3 => 'Chăm sóc, bảo dưỡng dài hạn sau bàn giao',
+                    ] as $number => $defaultPoint)
+                        <div class="md:col-span-2">
+                            <label class="label">Ý nổi bật {{ $number }}</label>
+                            <input type="text" name="about_point_{{ $number }}" value="{{ old('about_point_'.$number, $settings['about_point_'.$number] ?? $defaultPoint) }}" class="input">
+                            @error('about_point_'.$number) <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                        </div>
+                    @endforeach
+                    <div class="md:col-span-2">
+                        <label class="label">Hình ảnh giới thiệu</label>
+                        <input type="file" name="about_image" accept="image/png,image/jpeg,image/webp" class="block w-full text-sm text-gray-600 file:mr-4 file:rounded-md file:border-0 file:bg-gold file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-gold/90">
+                        <p class="mt-1 text-xs text-gray-500">JPG, PNG hoặc WebP; tối đa 4 MB; kích thước tối thiểu 600 × 300 px.</p>
+                        @error('about_image') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                        @if(filled($settings['about_image'] ?? ''))
+                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($settings['about_image']) }}" alt="Hình giới thiệu hiện tại" class="mt-3 h-40 w-full rounded-xl object-cover">
+                        @endif
+                    </div>
+                </div>
+            </section>
+
+            <section class="space-y-5 border-t border-gray-100 pt-8">
+                <div>
                     <h3 class="text-base font-bold text-charcoal">Thanh liên hệ nổi</h3>
                     <p class="mt-1 text-sm text-gray-500">Cập nhật các liên kết và công tắc hiển thị cho thanh nổi ở cạnh phải website.</p>
                 </div>
