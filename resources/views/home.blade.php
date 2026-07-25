@@ -1,7 +1,9 @@
 <x-app-layout>
-    <section class="relative overflow-hidden bg-charcoal">
-        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=2000')] bg-cover bg-center opacity-25"></div>
-        <div class="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/90 to-charcoal/45"></div>
+    <section class="relative overflow-hidden" style="background-color: {{ $settings['hero_background_color'] ?? '#0E3439' }}">
+        @if(filled($settings['hero_background_image'] ?? null))
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ Storage::disk('public')->url($settings['hero_background_image']) }}')"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-black/25"></div>
+        @endif
 
         <div class="relative mx-auto max-w-7xl px-6 py-28 lg:px-8 lg:py-40">
             <p class="mb-4 text-sm font-semibold uppercase tracking-[0.35em] text-gold">Công ty TNHH Hồ Nam</p>
@@ -18,7 +20,7 @@
         </div>
     </section>
 
-    <section aria-hidden="true" class="bg-charcoal">
+    <section aria-hidden="true" style="background-color: {{ $settings['hero_background_color'] ?? '#0E3439' }}">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <svg viewBox="0 0 1440 180" class="h-24 w-full text-gold/40">
                 <path d="M0 120 C 120 80, 240 160, 360 120 S 600 80, 720 120 S 960 160, 1080 120 S 1320 80, 1440 120" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55" />

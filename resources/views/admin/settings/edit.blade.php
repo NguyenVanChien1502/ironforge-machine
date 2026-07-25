@@ -41,6 +41,47 @@
 
             <section class="space-y-5 border-t border-gray-100 pt-8">
                 <div>
+                    <h3 class="text-base font-bold text-charcoal">Phông banner trang chủ</h3>
+                    <p class="mt-1 text-sm text-gray-500">Chọn màu nền hoặc tải ảnh để thay phông màu xanh phía sau tiêu đề lớn. Khi có ảnh, ảnh sẽ được ưu tiên hiển thị.</p>
+                </div>
+
+                <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+                    <div>
+                        <label class="label">Màu nền</label>
+                        <div class="flex items-center gap-3">
+                            <input
+                                type="color"
+                                name="hero_background_color"
+                                value="{{ old('hero_background_color', $settings['hero_background_color'] ?? '#0E3439') }}"
+                                class="h-11 w-20 cursor-pointer rounded-md border border-gray-300 bg-white p-1"
+                                required
+                            >
+                            <span class="text-sm text-gray-500">{{ old('hero_background_color', $settings['hero_background_color'] ?? '#0E3439') }}</span>
+                        </div>
+                        @error('hero_background_color') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                    </div>
+
+                    <div>
+                        <label class="label">Ảnh nền</label>
+                        <input type="file" name="hero_background_image" accept="image/png,image/jpeg,image/webp" class="block w-full text-sm text-gray-600 file:mr-4 file:rounded-md file:border-0 file:bg-gold file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white hover:file:bg-gold/90">
+                        <p class="mt-1 text-xs text-gray-500">JPG, PNG hoặc WebP; tối đa 6 MB; tối thiểu 1200 × 600 px.</p>
+                        @error('hero_background_image') <p class="mt-1 text-xs text-red-500">{{ $message }}</p> @enderror
+                    </div>
+                </div>
+
+                @if(filled($settings['hero_background_image'] ?? ''))
+                    <div class="rounded-xl border border-gray-200 p-4">
+                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('public')->url($settings['hero_background_image']) }}" alt="Ảnh nền banner hiện tại" class="h-48 w-full rounded-lg object-cover">
+                        <label class="mt-3 flex items-center gap-2 text-sm text-gray-700">
+                            <input type="checkbox" name="remove_hero_background_image" value="1" class="rounded border-gray-300 text-red-600 focus:ring-red-500">
+                            Xóa ảnh nền hiện tại và sử dụng màu đã chọn
+                        </label>
+                    </div>
+                @endif
+            </section>
+
+            <section class="space-y-5 border-t border-gray-100 pt-8">
+                <div>
                     <h3 class="text-base font-bold text-charcoal">Thông số nổi bật</h3>
                     <p class="mt-1 text-sm text-gray-500">Chỉnh sửa bốn thông số hiển thị ngay dưới banner trang chủ.</p>
                 </div>

@@ -12,6 +12,8 @@ class SettingSeeder extends Seeder
         $settings = [
             'site_name' => 'Hồ Nam Landscape',
             'site_logo' => null,
+            'hero_background_color' => '#0E3439',
+            'hero_background_image' => null,
             'stat_1_value' => '19+',
             'stat_1_label' => 'Năm phát triển',
             'stat_2_value' => '300+',

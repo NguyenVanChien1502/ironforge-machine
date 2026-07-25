@@ -30,6 +30,9 @@ class SettingController extends Controller
         $validated = $request->validate([
             'site_name' => ['required', 'string', 'max:255'],
             'site_logo' => ['nullable', 'file', 'mimes:jpg,jpeg,png,webp,svg', 'max:2048'],
+            'hero_background_color' => ['required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'hero_background_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:6144', 'dimensions:min_width=1200,min_height=600'],
+            'remove_hero_background_image' => ['nullable', 'boolean'],
             'stat_1_value' => ['required', 'string', 'max:30'],
             'stat_1_label' => ['required', 'string', 'max:100'],
             'stat_2_value' => ['required', 'string', 'max:30'],
@@ -62,6 +65,7 @@ class SettingController extends Controller
         $currentSettings = Setting::pluck('value', 'key')->all();
 
         $siteLogo = $currentSettings['site_logo'] ?? null;
+        $heroBackgroundImage = $currentSettings['hero_background_image'] ?? null;
         $aboutImage = $currentSettings['about_image'] ?? null;
 
         if ($request->hasFile('site_logo')) {
@@ -80,9 +84,24 @@ class SettingController extends Controller
             $aboutImage = $request->file('about_image')->store('about', 'public');
         }
 
+        if ($request->boolean('remove_hero_background_image') && $heroBackgroundImage) {
+            Storage::disk('public')->delete($heroBackgroundImage);
+            $heroBackgroundImage = null;
+        }
+
+        if ($request->hasFile('hero_background_image')) {
+            if ($heroBackgroundImage) {
+                Storage::disk('public')->delete($heroBackgroundImage);
+            }
+
+            $heroBackgroundImage = $request->file('hero_background_image')->store('hero', 'public');
+        }
+
         $payload = [
             'site_name' => $validated['site_name'],
             'site_logo' => $siteLogo,
+            'hero_background_color' => strtoupper($validated['hero_background_color']),
+            'hero_background_image' => $heroBackgroundImage,
             'stat_1_value' => $validated['stat_1_value'],
             'stat_1_label' => $validated['stat_1_label'],
             'stat_2_value' => $validated['stat_2_value'],

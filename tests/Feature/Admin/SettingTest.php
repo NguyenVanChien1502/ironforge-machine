@@ -17,6 +17,7 @@ class SettingTest extends TestCase
 
         $response = $this->actingAs($admin)->put(route('admin.settings.update'), [
             'site_name' => 'Hồ Nam Landscape',
+            'hero_background_color' => '#123456',
             'stat_1_value' => '25+',
             'stat_1_label' => 'Năm kinh nghiệm',
             'stat_2_value' => '450+',
@@ -36,11 +37,13 @@ class SettingTest extends TestCase
 
         $response->assertRedirect(route('admin.settings.edit'));
         $this->assertDatabaseHas('settings', ['key' => 'stat_1_value', 'value' => '25+']);
+        $this->assertDatabaseHas('settings', ['key' => 'hero_background_color', 'value' => '#123456']);
         $this->assertDatabaseHas('settings', ['key' => 'about_title', 'value' => 'Kiến tạo cảnh quan bền vững']);
 
         $this->get(route('home'))
             ->assertOk()
             ->assertSee('25+')
+            ->assertSee('background-color: #123456', false)
             ->assertSee('Năm kinh nghiệm')
             ->assertSee('Kiến tạo cảnh quan bền vững');
     }
