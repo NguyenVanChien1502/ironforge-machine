@@ -23,6 +23,10 @@
         body {
             top: 0 !important;
         }
+
+        [x-cloak] {
+            display: none !important;
+        }
     </style>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -36,10 +40,26 @@
     @include('partials.footer')
 
     @if(($settings['show_floating_bar'] ?? '1') === '1')
-        <div class="fixed right-4 top-1/2 z-50 -translate-y-1/2">
-            <div class="flex flex-col items-center gap-3 rounded-[34px] border border-white/15 bg-gradient-to-b from-[#B36D2A] via-[#A85E22] to-[#8B451A] px-3 py-4 shadow-[0_18px_36px_rgba(0,0,0,0.24)] backdrop-blur-xl">
+        <div
+            x-data="{ open: false }"
+            @keydown.escape.window="open = false"
+            @click.outside="open = false"
+            class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3 sm:bottom-7 sm:right-7"
+        >
+            <div
+                id="floating-contact-menu"
+                x-cloak
+                x-show="open"
+                x-transition:enter="transition duration-200 ease-out"
+                x-transition:enter-start="translate-y-3 opacity-0"
+                x-transition:enter-end="translate-y-0 opacity-100"
+                x-transition:leave="transition duration-150 ease-in"
+                x-transition:leave-start="translate-y-0 opacity-100"
+                x-transition:leave-end="translate-y-3 opacity-0"
+                class="flex flex-col items-center gap-2 rounded-[28px] border border-white/15 bg-gradient-to-b from-[#B36D2A] via-[#A85E22] to-[#8B451A] p-2.5 shadow-[0_18px_36px_rgba(0,0,0,0.24)] backdrop-blur-xl"
+            >
                 @if(($settings['show_floating_cart'] ?? '1') === '1')
-                    <a href="#" class="group relative flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.cart') }}" aria-label="{{ __('navigation.cart') }}">
+                    <a href="#" @click.prevent="open = false" class="group relative flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.cart') }}" aria-label="{{ __('navigation.cart') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
@@ -52,13 +72,13 @@
                 @endif
 
                 @if(($settings['show_floating_zalo'] ?? '1') === '1' && filled($settings['floating_zalo'] ?? ''))
-                    <a href="{{ $settings['floating_zalo'] }}" target="_blank" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-[10px] font-extrabold tracking-wide text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="Chat Zalo" aria-label="Chat Zalo">
+                    <a href="{{ $settings['floating_zalo'] }}" target="_blank" rel="noopener noreferrer" @click="open = false" class="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-[10px] font-extrabold tracking-wide text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="Chat Zalo" aria-label="Chat Zalo">
                         Zalo
                     </a>
                 @endif
 
                 @if(($settings['show_floating_phone'] ?? '1') === '1' && filled($settings['floating_phone'] ?? ''))
-                    <a href="tel:{{ str_replace(['.', ' '], '', $settings['floating_phone']) }}" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.hotline') }}" aria-label="{{ __('navigation.hotline') }}">
+                    <a href="tel:{{ str_replace(['.', ' '], '', $settings['floating_phone']) }}" @click="open = false" class="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.hotline') }}" aria-label="{{ __('navigation.hotline') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.94.725l.548 2.2a1 1 0 01-.321.988l-1.305.98a10.582 10.582 0 004.872 4.872l.98-1.305a1 1 0 01.988-.321l2.2.548a1 1 0 01.725.94V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                         </svg>
@@ -66,7 +86,7 @@
                 @endif
 
                 @if(($settings['show_floating_chat'] ?? '1') === '1' && filled($settings['floating_chat'] ?? ''))
-                    <a href="{{ $settings['floating_chat'] }}" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.consulting') }}" aria-label="{{ __('navigation.consulting') }}">
+                    <a href="{{ $settings['floating_chat'] }}" @click="open = false" class="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="{{ __('navigation.consulting') }}" aria-label="{{ __('navigation.consulting') }}">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -74,11 +94,28 @@
                 @endif
 
                 @if(($settings['show_floating_facebook'] ?? '1') === '1' && filled($settings['floating_facebook'] ?? ''))
-                    <a href="{{ $settings['floating_facebook'] }}" target="_blank" class="flex h-12 w-12 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="Facebook" aria-label="Facebook">
+                    <a href="{{ $settings['floating_facebook'] }}" target="_blank" rel="noopener noreferrer" @click="open = false" class="flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-sm font-bold text-white transition duration-300 hover:-translate-y-0.5 hover:bg-white/20" title="Facebook" aria-label="Facebook">
                         f
                     </a>
                 @endif
             </div>
+
+            <button
+                type="button"
+                @click="open = !open"
+                :aria-expanded="open.toString()"
+                aria-controls="floating-contact-menu"
+                class="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-[#C99A50] to-[#9A6329] text-white shadow-[0_12px_30px_rgba(0,0,0,0.28)] ring-1 ring-white/30 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_16px_36px_rgba(0,0,0,0.32)] focus:outline-none focus:ring-4 focus:ring-gold/30"
+                title="Mở menu liên hệ"
+                aria-label="Mở hoặc đóng menu liên hệ"
+            >
+                <svg x-show="!open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M21 12c0 4.418-4.03 8-9 8a9.86 9.86 0 01-4.255-.949L3 20l1.395-3.72A7.51 7.51 0 013 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+                <svg x-cloak x-show="open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
         </div>
     @endif
 

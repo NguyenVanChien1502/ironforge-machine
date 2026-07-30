@@ -48,6 +48,7 @@ class SettingTest extends TestCase
             ->assertSee('25+')
             ->assertSee('background-color: #123456', false)
             ->assertSee('Năm kinh nghiệm')
-            ->assertSee('Kiến tạo cảnh quan bền vững');
+            ->assertSee('Kiến tạo cảnh quan bền vững')
+            ->assertSee('M3 3h2l.4 2M7 13h10l4-8H5.4', false);
     }
 }
